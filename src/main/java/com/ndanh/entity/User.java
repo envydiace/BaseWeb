@@ -21,8 +21,7 @@ public class User implements Serializable {
     @Column(name="userId",unique = true,nullable = false)
     private int id;
 
-
-    @Column(name="username")
+    @Column(name="username",unique = true,nullable = false)
     private String username;
 
     @Column(name="password")
@@ -37,6 +36,8 @@ public class User implements Serializable {
     @Column(name="gender")
     private boolean gender;
 
-
+    @ManyToOne
+    @JoinColumn(name = "dept_id")
+    private Department department;
 
 }

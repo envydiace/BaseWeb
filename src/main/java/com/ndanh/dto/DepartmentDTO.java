@@ -1,6 +1,5 @@
 package com.ndanh.dto;
 
-import com.ndanh.entity.Department;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,11 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class DepartmentDTO {
     private int id;
-    private String username;
     private String name;
-    private int age;
-    private boolean gender;
-    private String deptName;
+    private int noOfUser;
+
 }

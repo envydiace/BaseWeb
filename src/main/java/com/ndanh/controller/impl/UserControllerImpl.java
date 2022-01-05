@@ -16,9 +16,6 @@ public class UserControllerImpl implements UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserMapper userMapper;
-
     @Override
     public ResponseEntity<UserDTO> getUserById(int id) {
         return ResponseEntity.ok(userService.getUserById(id));
@@ -42,5 +39,15 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<UserDTO> deleteUser(int id) {
         return ResponseEntity.ok(userService.deleteUser(id));
+    }
+
+    @Override
+    public ResponseEntity<List<UserDTO>> searchUser(String name) {
+        return ResponseEntity.ok(userService.searchByName(name));
+    }
+
+    @Override
+    public ResponseEntity<UserDTO> checkLogin(String username, String password) {
+        return null;
     }
 }

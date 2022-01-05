@@ -5,7 +5,6 @@ import com.ndanh.entity.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.UserTransaction;
 import java.util.List;
 @RequestMapping("/users")
 public interface UserController {
@@ -25,4 +24,9 @@ public interface UserController {
     @DeleteMapping("/{id}")
     ResponseEntity<UserDTO> deleteUser(@PathVariable int id);
 
+    @GetMapping("/search")
+    ResponseEntity<List<UserDTO>> searchUser(@RequestParam(value = "keyword") String name);
+
+    @PostMapping("/login")
+    ResponseEntity<UserDTO> checkLogin(@RequestBody String username,@RequestBody String password);
 }
