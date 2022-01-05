@@ -1,4 +1,4 @@
-package com.ndanh.controller.exception;
+package com.ndanh.exception;
 
 public class DuplicateIdException extends RuntimeException{
     public DuplicateIdException(String message){

@@ -1,10 +1,10 @@
 package com.ndanh.service.impl;
 
 import com.ndanh.Mapper.UserMapper;
-import com.ndanh.controller.exception.DuplicateIdException;
-import com.ndanh.controller.exception.NotFoundException;
 import com.ndanh.dto.UserDTO;
 import com.ndanh.entity.User;
+import com.ndanh.exception.DuplicateIdException;
+import com.ndanh.exception.NotFoundException;
 import com.ndanh.repository.UserRepository;
 import com.ndanh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,8 @@ public class UserServiceImpl implements UserService {
                 return mapper.toUserDTO(u);
             }
         }
-        throw new NotFoundException("User khong ton tai trong he thong");
+
+        throw new NotFoundException("User khong ton tai");
     }
 
     @Override
@@ -50,7 +51,6 @@ public class UserServiceImpl implements UserService {
             }
         }
         UserDTO userDTO = mapper.toUserDTO(userRepository.save(user));
-        userRepository.addRel(user.getDepartment().getDepId(),user.getId()) ;
         return userDTO;
     }
 

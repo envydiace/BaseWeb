@@ -11,5 +11,6 @@ public interface DeptService {
     List<DepartmentDTO> getAllDept();
     DepartmentDTO getById(int id);
     DepartmentDTO createDept(Department department);
+    DepartmentDTO deleteDept(int id);
 
 }

@@ -1,4 +1,4 @@
-package com.ndanh.controller.exception;
+package com.ndanh.exception;
 
 public class NotFoundException extends RuntimeException{
     public NotFoundException(String message){

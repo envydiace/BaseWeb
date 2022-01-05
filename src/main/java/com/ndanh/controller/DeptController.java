@@ -17,4 +17,7 @@ public interface DeptController {
 
     @PostMapping("")
     ResponseEntity<DepartmentDTO> addDept(@RequestBody Department department);
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<DepartmentDTO> deleteDept(@PathVariable int id);
 }

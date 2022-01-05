@@ -1,4 +1,4 @@
-package com.ndanh.controller.exception;
+package com.ndanh.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

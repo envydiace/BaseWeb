@@ -2,7 +2,6 @@ package com.ndanh.service;
 
 import com.ndanh.dto.UserDTO;
 import com.ndanh.entity.User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

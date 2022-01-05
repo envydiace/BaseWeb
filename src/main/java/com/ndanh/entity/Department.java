@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +27,7 @@ public class Department implements Serializable {
     @Column(name = "dept_name")
     private String depName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "department")
     private List<User> users = new ArrayList<>();
 
 }

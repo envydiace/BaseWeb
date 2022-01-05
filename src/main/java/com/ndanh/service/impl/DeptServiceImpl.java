@@ -1,15 +1,16 @@
 package com.ndanh.service.impl;
 
 import com.ndanh.Mapper.DeptMapper;
-import com.ndanh.controller.exception.DuplicateIdException;
 import com.ndanh.dto.DepartmentDTO;
 import com.ndanh.entity.Department;
-import com.ndanh.entity.User;
+import com.ndanh.exception.DuplicateIdException;
+import com.ndanh.exception.NotFoundException;
 import com.ndanh.repository.DepartmentRepository;
 import com.ndanh.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -19,6 +20,7 @@ public class DeptServiceImpl implements DeptService {
 
     @Autowired
     DeptMapper deptMapper;
+    private Department department;
 
     @Override
     public List<DepartmentDTO> getAllDept() {
@@ -43,5 +45,22 @@ public class DeptServiceImpl implements DeptService {
             }
         }
         return deptMapper.toDeptDTO( departmentRepository.save(department));
+    }
+
+    @Override
+    public DepartmentDTO deleteDept(int id) {
+        try{
+            Department department= departmentRepository.getById(id);
+            departmentRepository.delete(department);
+
+            if(department.getUsers().size()>0){
+                throw new DuplicateIdException("Khong xoa duoc department nay");
+            }
+
+            return deptMapper.toDeptDTO( department);
+        }catch (EntityNotFoundException ex){
+            throw new NotFoundException("Department khong ton tai");
+        }
+
     }
 }

@@ -30,4 +30,9 @@ public class DeptControllerImpl implements DeptController {
     public ResponseEntity<DepartmentDTO> addDept(Department department) {
         return ResponseEntity.ok(deptService.createDept(department));
     }
+
+    @Override
+    public ResponseEntity<DepartmentDTO> deleteDept(int id) {
+        return ResponseEntity.ok(deptService.deleteDept(id));
+    }
 }
