@@ -2,6 +2,9 @@ package com.ndanh.controller;
 
 import com.ndanh.dto.UserDTO;
 import com.ndanh.entity.User;
+import org.aspectj.apache.bcel.classfile.Module;
+import org.hibernate.annotations.Parameter;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +29,17 @@ public interface UserController {
 
     @GetMapping("/search")
     ResponseEntity<List<UserDTO>> searchUser(@RequestParam(value = "keyword") String name);
+
+    @GetMapping("/search/{field}")
+    ResponseEntity<List<UserDTO>> sortListUserByField(@PathVariable String field);
+
+    @GetMapping("/page")
+    ResponseEntity<List<UserDTO>> pagingAndSortListUserByField(@RequestParam(name = "pageNo", required = false,defaultValue = "1") int pageNo,
+                                                               @RequestParam(name = "pageSize",required = false,defaultValue = "10") int pageSize,
+                                                               @RequestParam(name = "field", required = false, defaultValue = "id") String field);
+
+    @GetMapping("/list")
+    ResponseEntity<List<UserDTO>> pagingListUser(@RequestParam int pageNo, @RequestParam int pageSize);
 
     @PostMapping("/login")
     ResponseEntity<UserDTO> checkLogin(@RequestBody String username,@RequestBody String password);

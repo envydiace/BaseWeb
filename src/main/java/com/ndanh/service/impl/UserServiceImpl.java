@@ -8,6 +8,9 @@ import com.ndanh.exception.NotFoundException;
 import com.ndanh.repository.UserRepository;
 import com.ndanh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -84,6 +87,36 @@ public class UserServiceImpl implements UserService {
             userDTOS.add(mapper.toUserDTO(u));
         }
         return  userDTOS;
+    }
+
+    @Override
+    public List<UserDTO> getSortListUser(String field) {
+        List<UserDTO> result = new ArrayList<>();
+        List<User> list = userRepository.findAll(Sort.by(Sort.Direction.ASC,field));
+        for(User u:list){
+            result.add(mapper.toUserDTO(u));
+        }
+        return result;
+    }
+
+    @Override
+    public List<UserDTO> getListUser(int pageNo, int pageSize) {
+        List<UserDTO> userDTOList = new ArrayList<>();
+        Page<User> userPage = userRepository.findAll(PageRequest.of(pageNo-1,pageSize));
+        for(User u:userPage){
+            userDTOList.add(mapper.toUserDTO(u));
+        }
+        return userDTOList;
+    }
+
+    @Override
+    public List<UserDTO> getSortListUserPaging(String field, int pageNo, int pageSize) {
+        List<UserDTO> result = new ArrayList<>();
+        Page<User> userPage = userRepository.findAll(PageRequest.of(pageNo-1,pageSize).withSort(Sort.by(field)));
+        for(User u:userPage){
+            result.add(mapper.toUserDTO(u));
+        }
+        return result;
     }
 
 

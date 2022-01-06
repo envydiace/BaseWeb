@@ -47,6 +47,21 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    public ResponseEntity<List<UserDTO>> sortListUserByField(String field) {
+        return ResponseEntity.ok(userService.getSortListUser(field));
+    }
+
+    @Override
+    public ResponseEntity<List<UserDTO>> pagingAndSortListUserByField(int pageNo, int pageSize, String field) {
+        return ResponseEntity.ok(userService.getSortListUserPaging(field,pageNo,pageSize));
+    }
+
+    @Override
+    public ResponseEntity<List<UserDTO>> pagingListUser(int pageNo, int pageSize) {
+        return ResponseEntity.ok(userService.getListUser(pageNo,pageSize));
+    }
+
+    @Override
     public ResponseEntity<UserDTO> checkLogin(String username, String password) {
         return null;
     }

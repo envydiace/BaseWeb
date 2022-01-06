@@ -16,6 +16,8 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     @Query("select u from User u where u.name like %:name%" )
     List<User> searchByName(@Param(value = "name") String name);
 
+
+
 //    @Transactional
 //    @Modifying
 //    @Query(value = "insert into baseweb.department_users (department_dep_id,users_user_id) values (:did,:uid)",nativeQuery = true)
