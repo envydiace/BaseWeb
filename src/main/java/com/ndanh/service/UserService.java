@@ -18,4 +18,6 @@ public interface UserService {
     List<UserDTO> getSortListUser(String field);
     List<UserDTO> getListUser(int pageNo, int pageSize );
     List<UserDTO> getSortListUserPaging(String field,int pageNo, int pageSize);
+    List<UserDTO> getListUserByName(String name, int pageNo, int pageSize );
+
 }

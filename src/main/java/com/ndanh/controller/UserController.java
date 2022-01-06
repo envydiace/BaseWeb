@@ -43,4 +43,7 @@ public interface UserController {
 
     @PostMapping("/login")
     ResponseEntity<UserDTO> checkLogin(@RequestBody String username,@RequestBody String password);
+
+    @GetMapping("/searchBy")
+    ResponseEntity<List<UserDTO>> searchUserByName(@RequestParam String name, @RequestParam int pageNo, @RequestParam int pageSize);
 }

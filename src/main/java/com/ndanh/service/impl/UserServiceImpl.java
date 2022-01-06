@@ -119,5 +119,15 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public List<UserDTO> getListUserByName(String name, int pageNo, int pageSize) {
+        List<UserDTO> userDTOS = new ArrayList<>();
+        Page<User> userPage = userRepository.findAllByNameContaining(name  ,PageRequest.of(pageNo-1,pageSize));
+        for(User u:userPage){
+            userDTOS.add(mapper.toUserDTO(u));
+        }
+        return userDTOS;
+    }
+
 
 }

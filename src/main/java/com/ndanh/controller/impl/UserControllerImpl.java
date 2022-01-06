@@ -65,4 +65,9 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<UserDTO> checkLogin(String username, String password) {
         return null;
     }
+
+    @Override
+    public ResponseEntity<List<UserDTO>> searchUserByName(String name, int pageNo, int pageSize){
+        return ResponseEntity.ok(userService.getListUserByName(name,pageNo,pageSize));
+    }
 }
