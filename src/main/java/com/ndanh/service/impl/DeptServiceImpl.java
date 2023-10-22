@@ -7,10 +7,10 @@ import com.ndanh.exception.DuplicateIdException;
 import com.ndanh.exception.NotFoundException;
 import com.ndanh.repository.DepartmentRepository;
 import com.ndanh.service.DeptService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 @Component
