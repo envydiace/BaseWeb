@@ -14,5 +14,6 @@ public class UserDTO {
     private String name;
     private int age;
     private boolean gender;
-    private String deptName;
+    private int departmentId;
+    private String departmentName;
 }

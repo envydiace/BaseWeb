@@ -1,6 +1,9 @@
 package com.ndanh.controller;
 
+import com.ndanh.common.ApiResponse;
 import com.ndanh.dto.UserDTO;
+import com.ndanh.dto.request.user.AddUserRequest;
+import com.ndanh.dto.request.user.EditUserRequest;
 import com.ndanh.entity.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +18,16 @@ public interface UserController {
     ResponseEntity<UserDTO> getUserById(@PathVariable int id);
 
     @GetMapping("")
-    ResponseEntity<List<UserDTO>> getListUser();
+    ApiResponse getListUser();
 
-    @PostMapping("")
-    ResponseEntity<UserDTO> addUser(@RequestBody User user);
+    @PostMapping("/add")
+    ApiResponse addUser(@RequestBody AddUserRequest request);
 
-    @PutMapping("/{id}")
-    ResponseEntity<UserDTO> updateUser(@RequestBody User user, @PathVariable int id);
+    @PutMapping("/edit")
+    ApiResponse updateUser(@RequestBody EditUserRequest request);
 
     @DeleteMapping("/{id}")
-    ResponseEntity<UserDTO> deleteUser(@PathVariable int id);
+    ApiResponse deleteUser(@PathVariable int id);
 
     @GetMapping("/search")
     ResponseEntity<List<UserDTO>> searchUser(@RequestParam(value = "keyword") String name);

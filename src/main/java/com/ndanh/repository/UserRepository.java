@@ -18,6 +18,9 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     @Query("select u from User u where u.name like %:name%" )
     List<User> searchByName(@Param(value = "name") String name);
 
+    @Query(value = "select * from user where lower(username) = lower(:username) limit 1 ", nativeQuery = true)
+    User getByUsername(@Param("username") String username);
+
     Page<User> findAllByNameContaining(String name , Pageable pageable);
     Page<User> findAllByAgeContaining(String name , Pageable pageable);
 
